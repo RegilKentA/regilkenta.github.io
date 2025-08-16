@@ -1,6 +1,8 @@
+// header navbar
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.getElementById('navMenu');
 const header = document.querySelector('.header');
+const navLinks = document.querySelectorAll('.nav-link');
 
 // Handle mobile menu toggle
 mobileToggle.addEventListener('click', () => {
@@ -8,11 +10,34 @@ mobileToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
+// Handle navigation link clicks and active state
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Remove active class from all links
+        navLinks.forEach(l => l.classList.remove('active'));
+
+        // Add active class to clicked link
+        link.classList.add('active');
+
+        // Close mobile menu
         mobileToggle.classList.remove('active');
         navMenu.classList.remove('active');
+
+        // Smooth scroll to section
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+            const headerHeight = header.offsetHeight;
+            const targetPosition = targetSection.offsetTop - headerHeight - 20;
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
@@ -24,17 +49,41 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Enhanced scroll effect for fixed header
+// Enhanced scroll effect for fixed header and active section detection
 let lastScrollY = window.scrollY;
 let ticking = false;
+const sections = document.querySelectorAll('.section');
 
 function updateHeader() {
     const scrollY = window.scrollY;
+    const headerHeight = header.offsetHeight;
 
+    // Header scroll effect
     if (scrollY > 50) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
+    }
+
+    // Update active navigation based on scroll position
+    let currentSection = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - headerHeight - 100;
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            currentSection = section.id;
+        }
+    });
+
+    // Update active nav link based on current section
+    if (currentSection) {
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+                link.classList.add('active');
+            }
+        });
     }
 
     lastScrollY = scrollY;
@@ -52,6 +101,21 @@ window.addEventListener('scroll', requestTick);
 
 // Initialize header state
 updateHeader();
+
+// Handle logo click
+document.querySelector('.logo').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Remove active from all and add to home
+    navLinks.forEach(l => l.classList.remove('active'));
+    document.querySelector('[href="#home"]').classList.add('active');
+
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 
 
 // Add smooth scroll animation when timeline items come into view
