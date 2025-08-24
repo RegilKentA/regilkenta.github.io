@@ -127,6 +127,14 @@ document.querySelector('.logo').addEventListener('click', (e) => {
     });
 });
 
+// hi emoji animation
+document.getElementById('wave').addEventListener('click', () => {
+    const wave = document.getElementById('wave');
+    wave.style.animation = 'none';
+    setTimeout(() => {
+        wave.style.animation = '';
+    }, 10);
+});
 
 // Add smooth scroll animation when timeline items come into view
 const observerOptions = {
@@ -152,23 +160,13 @@ document.querySelectorAll('.achievement-item').forEach(item => {
     observer.observe(item);
 });
 
-
-// Observe achivement items
-
-
 // Observe timeline items
 document.querySelectorAll('.timeline-item').forEach(item => {
-    // item.style.opacity = '0';
-    // item.style.transform = 'translateX(-30px)';
-    // item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(item);
 });
 
 // Observe interest cards
 document.querySelectorAll('.logo-card').forEach(card => {
-    // card.style.opacity = '0';
-    // card.style.transform = 'translateY(30px)';
-    // card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(card);
 });
 
@@ -199,9 +197,6 @@ function goTo(index) {
     current = index;
     updateCarousel();
 }
-
-// Auto-slide every 4 seconds
-// setInterval(() => slide(1), 4000);
 
 function openModal(title, issuer, date, imageSrc, skills) {
     const modal = document.getElementById('certModal');
