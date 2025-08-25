@@ -326,6 +326,57 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-linkedin {
+    background-color: #0077b5 !important;
+    /* Official LinkedIn blue */
+    border-color: #0077b5 !important;
+    color: white !important;
+    padding: 12px 16px !important;
+    /* More padding for larger buttons */
+    border-radius: 8px !important;
+}
+
+.btn-linkedin:hover,
+.btn-linkedin:focus,
+.btn-linkedin:active {
+    background-color: #005885 !important;
+    /* Darker blue on hover */
+    border-color: #005885 !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+.btn-linkedin i {
+    font-size: 18px;
+    /* Larger icon */
+}
+
+/* GitHub brand color overrides for Bootstrap buttons */
+.btn-github {
+    background-color: #333333 !important;
+    /* GitHub dark */
+    border-color: #333333 !important;
+    color: white !important;
+    padding: 12px 16px !important;
+    /* More padding for larger buttons */
+    border-radius: 8px !important;
+}
+
+.btn-github:hover,
+.btn-github:focus,
+.btn-github:active {
+    background-color: #24292e !important;
+    /* Darker on hover */
+    border-color: #24292e !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+.btn-github i {
+    font-size: 18px;
+    /* Larger icon */
+}
+
 /* Skills Section */
 .skills-section {
     padding: 40px 0;
