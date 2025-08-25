@@ -266,8 +266,8 @@ body {
 }
 
 .starting-hero {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 .hero-photo {
@@ -714,13 +714,31 @@ body {
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 }
 
+.project-image {
+    width: 100%;
+    height: 310px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
 .project-content {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 30px;
+    padding: 0;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.project-details {
+    padding: 30px;
 }
 
 .project-footer {
@@ -842,7 +860,11 @@ body {
         height: 350px;
     }
 
-    .project-content {
+    .project-image {
+        height: 135px;
+    }
+
+    .project-details {
         padding: 20px;
     }
 
