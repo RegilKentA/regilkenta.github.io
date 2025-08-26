@@ -170,17 +170,21 @@ document.querySelectorAll('.logo-card').forEach(card => {
     observer.observe(card);
 });
 
-
+// Project section 
 let current = 0;
 const cards = document.querySelectorAll('.project-card');
 const dots = document.querySelectorAll('.dot');
 const carousel = document.getElementById('carousel');
+const container = document.querySelector('.carousel-container');
 
 function updateCarousel() {
-    const containerWidth = document.querySelector('.carousel-container').offsetWidth;
-    const cardWidth = 650; // card width + gap
-    const centerOffset = (containerWidth - 700) / 2; // center the 400px card
+    if (cards.length <= 1) return;
+
+    const containerWidth = container.offsetWidth;
+    const cardWidth = 650;
+    const centerOffset = (containerWidth - 600) / 2;
     const offset = centerOffset - (current * cardWidth);
+
     carousel.style.transform = `translateX(${offset}px)`;
 
     dots.forEach((dot, i) => {
@@ -198,6 +202,18 @@ function goTo(index) {
     updateCarousel();
 }
 
+// Show navigation only if multiple projects
+if (cards.length > 1) {
+    container.classList.add('multiple-projects');
+}
+
+// Initialize
+updateCarousel();
+
+// Handle window resize
+window.addEventListener('resize', updateCarousel);
+
+// Certifications sections 
 function openModal(title, issuer, date, imageSrc, skills) {
     const modal = document.getElementById('certModal');
     const modalImage = document.getElementById('modalImage');
